@@ -43,8 +43,8 @@ static NSString * const account = @"account";
     // const：修饰基本变量
     // 下面两种写法是一样的，const只修饰右边的基本变量a
     const int b = 20;  // b:只读变量 == 常量
-//    int const b = 20;  // b:只读变量 == 常量
-//    b = 3; //不允许修改值
+    int const b = 20;  // b:只读变量 == 常量
+    b = 3; //不允许修改值
     
     // const:修饰指针变量*p,带*的变量，就是指针变量
     // 定义一个指向int类型的指针变量，指向a的地址
@@ -60,18 +60,18 @@ static NSString * const account = @"account";
     // const修饰指针变量访问的内存空间，修饰的是右边*p1
     // 两种方式一样
     const int *p1; // *p1:常量 p1:变量
-//    int const *p1; // *p1:常量 p1:变量
+    int const *p1; // *p1:常量 p1:变量
     
     // const修饰指针变量p1
-//    int * const p1; // *p1:常量 p1:常量
+    int * const p1; // *p1:常量 p1:常量
     
     // 第一个const修饰*p1,第二个const修饰p1
     // 两种方式一样
-//    const int *const p1; // *p1:常量 p1:常量
-//    int const *const p1; // *p1:常量 p1:常量
+    const int *const p1; // *p1:常量 p1:常量
+    int const *const p1; // *p1:常量 p1:常量
     
     static  NSString * const key = @"name";
-//    key = @"";
+    key = @"";
     static  NSString const *key1 = @"name";
     NSLog(@"%p %@",key1,key1);
     key1 = @"+++";
@@ -120,7 +120,7 @@ static NSString * const account = @"account";
     // 如果 const修饰 *key1,表示*key1只读，key1还是能改变。
     static  NSString const *key6 = @"name";
     // 报错：Read-only variable is not assignable
-//    *key6 = @"+++";
+    *key6 = @"+++";
     // 正常
     key6 = @"+++";
     
@@ -144,7 +144,7 @@ static NSString * const account = @"account";
 - (void)test:(const int * )a
 {
     // 会报错 Read-only variable is not assignable
-        *a = 20;
+    *a = 20;
 }
 
 // const放*后面约束参数，表示a只读
@@ -153,7 +153,7 @@ static NSString * const account = @"account";
 {
     int b;
     // 会报错 Cannot assign to variable 'a' with const-qualified type 'int *const'
-//    a = &b;
+    a = &b;
     // 会报错 Cannot assign to variable 'a' with const-qualified type 'int *const'
     a = 30;
     
