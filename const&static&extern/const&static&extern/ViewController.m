@@ -111,11 +111,11 @@ static NSString * const account = @"account";
     NSString *y = @"地址";
     static NSString * const key5 = @"name";
     // 报错：Cannot assign to variable 'key' with const-qualified type 'NSString *const __strong'
-//    key5 = @"---";
+   key5 = @"---";
     // 报错：Assigning to 'NSString' from incompatible type 'NSString *'
-//    *key5 = @"---";
+   *key5 = @"---";
     // 报错：Assigning to 'NSString' from incompatible type 'NSString *__strong *'
-//    *key5 = &y;
+   *key5 = &y;
     
     // 如果 const修饰 *key1,表示*key1只读，key1还是能改变。
     static  NSString const *key6 = @"name";
