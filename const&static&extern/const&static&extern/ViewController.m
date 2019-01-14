@@ -41,9 +41,10 @@ static NSString * const account = @"account";
     
     // const两种用法
     // const：修饰基本变量
-    // 下面两种写法是一样的，const只修饰右边的基本变量a
+    // 下面两种写法是一样的，const只修饰右边的基本变量b
     const int b = 20;  // b:只读变量 == 常量
     int const b = 20;  // b:只读变量 == 常量
+    // 报错：Cannot assign to variable 'b' with const-qualified type 'const int'
     b = 3; //不允许修改值
     
     // const:修饰指针变量*p,带*的变量，就是指针变量
@@ -54,7 +55,7 @@ static NSString * const account = @"account";
     p = &c;
     
     // 允许修改p指向的地址，
-    // 允许修改p访问内存空间的值
+    // 即允许修改p访问内存空间的值
     *p = 20;
     
     // const修饰指针变量访问的内存空间，修饰的是右边*p1
@@ -62,13 +63,17 @@ static NSString * const account = @"account";
     const int *p1; // *p1:常量 p1:变量
     int const *p1; // *p1:常量 p1:变量
     
-    // const修饰指针变量p1
-    int * const p1; // *p1:常量 p1:常量
+    // const修饰指针变量p2
+    int * const p2; // *p2:变量 p2:变量?
+    // 报错：Cannot assign to variable 'p2' with const-qualified type 'int *const'
+    p2 = 6; //？？？？
+    *p2 = 3;
+    *p2 = 6;
     
-    // 第一个const修饰*p1,第二个const修饰p1
+    // 第一个const修饰*p3,第二个const修饰p3
     // 两种方式一样
-    const int *const p1; // *p1:常量 p1:常量
-    int const *const p1; // *p1:常量 p1:常量
+    const int * const p3; // *p3:常量 p3:常量
+    int const * const p3; // *p3:常量 p3:常量
     
     static  NSString * const key = @"name";
     key = @"";
@@ -106,16 +111,16 @@ static NSString * const account = @"account";
 /// 五、static与const联合使用
 //    static与const作用:声明一个只读的静态变量
 //    开发使用场景:在一个文件中经常使用的字符串常量，可以使用static与const组合
-    
+   
     // 开发中经常拿到key修改值，因此用const修饰key,表示key只读，不允许修改。
     NSString *y = @"地址";
     static NSString * const key5 = @"name";
     // 报错：Cannot assign to variable 'key' with const-qualified type 'NSString *const __strong'
-   key5 = @"---";
+    key5 = @"---";
     // 报错：Assigning to 'NSString' from incompatible type 'NSString *'
-   *key5 = @"---";
+    *key5 = @"---";
     // 报错：Assigning to 'NSString' from incompatible type 'NSString *__strong *'
-   *key5 = &y;
+    *key5 = &y;
     
     // 如果 const修饰 *key1,表示*key1只读，key1还是能改变。
     static  NSString const *key6 = @"name";
